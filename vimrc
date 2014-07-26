@@ -375,11 +375,10 @@ set listchars=tab:▸\ ,eol:¬,extends:>,precedes:>,trail:.
 
 " GUI RELATED STUFF
 if has("gui_running")
-    " if has("x11")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-        " else
-        " set guifont=Monaco:h14
-    " endif
+    " On Mac OS
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    " On Ubuntu
+    " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set columns=110
     set lines=50
     set antialias
