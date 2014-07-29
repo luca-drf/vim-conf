@@ -2,8 +2,8 @@ Installation:
 -------------
 ::
 
-    git clone https://github.com/radome/vim-conf.git ~/.vim
-    cd ~/.vim
+    git clone https://github.com/radome/vim-conf.git ~/.vim && \
+    cd ~/.vim && \
     git submodule init && git submodule update
 
 
