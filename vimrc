@@ -420,3 +420,6 @@ let g:SuperTabContextDiscoverDiscovery =
 " Syntastic
 let g:syntastic_python_checkers = ['pylint', 'pep8']
 let g:airline#extensions#syntastic#enabled = 1
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
