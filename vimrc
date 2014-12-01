@@ -1,5 +1,26 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+" Load
+Plug 'ervandew/supertab'
+Plug 'Raimondi/delimitMate'
+Plug 'sjl/gundo.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
+Plug 'mileszs/ack.vim', { 'on': 'Ack' }
+Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+
+call plug#end()
+
+
 syntax on
 filetype plugin indent on
 
