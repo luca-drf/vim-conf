@@ -15,7 +15,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 
 
 call plug#end()
@@ -431,7 +431,8 @@ let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs = 1
 
 " Supertab
-let g:SuperTabNoCompleteAfter = ['^',',','\s',';','{','[','(']
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabNoCompleteAfter = ['^',',','\s',';',':','{','[','(']
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery =

@@ -12,6 +12,7 @@ First clone the proper branch
 Then install the plugins by calling
 
 ::
+
     :PlugInstall
 
 For more details https://github.com/junegunn/vim-plug
