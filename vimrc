@@ -280,18 +280,6 @@ if version >= 703
     set undodir=$HOME/.vim-undos/
 endif
 
-" Setting up omnicpp
-" " Enable omni
-" """"""""""""""""""""""
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-
-" noremap <F5> :make<cr>
-
 set shellslash
 
 "" LATEX
@@ -431,12 +419,19 @@ let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs = 1
 
 " Supertab
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabClosePreviewOnPopupClose = 1
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabNoCompleteAfter = ['^',',','\s',';',':','{','[','(']
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
 let g:SuperTabContextDiscoverDiscovery =
     \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+  autocmd FileType *
+    \ if &omnifunc != '' |
+    \   call SuperTabChain(&omnifunc, "<c-p>") |
+    \   call SuperTabSetDefaultCompletionType("context") |
+    \ endif
 
 " Syntastic
 let g:syntastic_python_checkers = ['pylint', 'pep8']
