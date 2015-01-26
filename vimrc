@@ -434,6 +434,8 @@ let g:SuperTabContextDiscoverDiscovery =
     \ endif
 
 " Syntastic
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
 let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
