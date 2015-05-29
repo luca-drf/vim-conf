@@ -18,6 +18,7 @@ Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', {'for': 'go'}
+" Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 call plug#end()
 
@@ -440,6 +441,8 @@ let NERDCompactSexyComs = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
+let g:syntastic_python_python_exec = 'python'
+let g:syntastic_python_pylint_exe = 'python -m pylint'
 let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
