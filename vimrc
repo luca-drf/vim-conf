@@ -2,7 +2,7 @@
 "execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
-" Load
+" Load 
 Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -11,17 +11,20 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 
+" Color schemes
+" Plug 'jdkanani/vim-material-theme'
+" Plug 'tomasr/molokai'
+
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 call plug#end()
-
 
 syntax on
 filetype plugin indent on
@@ -81,7 +84,7 @@ vnoremap > >gv
 " tasklist de ambiguate
 " map <leader>td <Plug>TaskList
 
-"gundo
+" gundo
 map <leader>g :GundoToggle<CR>
 let g:gundo_width = 30
 let g:gundo_preview_height = 40
@@ -340,10 +343,9 @@ let g:Tex_IgnoreLevel = 9
 "let g:gist_open_browser_after_post = 1
 
 let g:molokai_original = 0
+set background=dark
 colorscheme molokai
 
-"set background=light
-"colorscheme solarized
 
 " let g:ShowTrailingWhitespace_FilterFunc = ''
 " let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
@@ -402,9 +404,6 @@ else
 endif
 
 
-" delimitMate Stuff
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
 
 " set pdev=cups-pdf
 set printoptions=paper:A4,syntax:y,wrap:y,header:0
@@ -417,25 +416,14 @@ set printoptions=paper:A4,syntax:y,wrap:y,header:0
 "   return v:shell_error
 " endfunc
 
-" NERDCommenter Stuff
+" delimitMate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
+" NERDCommenter
 let NERDSpaceDelims = 1
 let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs = 1
-
-" " Supertab
-" let g:SuperTabClosePreviewOnPopupClose = 1
-" let g:SuperTabDefaultCompletionType = 'context'
-" let g:SuperTabContextDefaultCompletionType = '<c-p>'
-" let g:SuperTabNoCompleteAfter = ['^',',','\s',';',':','{','[','(']
-" let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-" let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-" let g:SuperTabContextDiscoverDiscovery =
-"     \ ['&completefunc:<c-x><c-u>', '&omnifunc:<c-x><c-o>']
-"   autocmd FileType *
-"     \ if &omnifunc != '' |
-"     \   call SuperTabChain(&omnifunc, '<c-p>') |
-"     \   call SuperTabSetDefaultCompletionType("context") |
-"     \ endif
 
 " Syntastic
 let g:syntastic_cpp_compiler = 'clang++'
@@ -448,69 +436,6 @@ let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
-
-
-" neocomplete
-" let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
-" let g:neocomplete#enable_auto_delimiter = 1
-" let g:neocomplete#max_list = 15
-" let g:neocomplete#force_overwrite_completefunc = 1
-
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"     \ 'default' : '',
-"     \ 'vimshell' : $HOME.'/.vimshell_hist',
-"     \ 'scheme' : $HOME.'/.gosh_completions'
-"     \ }
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" inoremap <CR> <CR>
-" " <ESC> takes you out of insert mode
-" inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-" " <CR> accepts first, then sends the <CR>
-" inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-" " <Down> and <Up> cycle like <Tab> and <S-Tab>
-" inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-" inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
-" " Jump up and down the list
-" inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-" inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-" " <TAB>: completion.
-" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-"     function! CleverTab()
-"         if pumvisible()
-"             return "\<C-n>"
-"         endif
-"         let substr = strpart(getline('.'), 0, col('.') - 1)
-"         let substr = matchstr(substr, '[^ \t]*$')
-"         if strlen(substr) == 0
-"             " nothing to match on empty string
-"             return "\<Tab>"
-"         else
-"             " existing text matching
-"             if neosnippet#expandable_or_jumpable()
-"                 return "\<Plug>(neosnippet_expand_or_jump)"
-"             else
-"                 return neocomplete#start_manual_complete()
-"             endif
-"         endif
-"     endfunction
-
-"     imap <expr> <Tab> CleverTab()
-
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"     let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
 
 " netrw
