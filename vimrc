@@ -9,7 +9,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
-Plug 'eiginn/netrw'
+Plug 'eiginn/netrw' 
 
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
@@ -32,7 +32,7 @@ filetype plugin indent on
 let g:plug_timeout = 10000
 
 " Only for MacVim
-let $PATH=$PATH . ':/usr/local/bin:/usr/bin'
+" let $PATH=$PATH . ':/usr/local/bin:/usr/bin'
 
 " work with windows
 noremap <C-Left>  :wincmd h<CR>
@@ -97,12 +97,22 @@ let g:gundo_right = 0
 
 "if has('macunix')
 "    " Yank text to the OS X clipboard
-    noremap <leader>y "*y
-    noremap <leader>yy "*Y
+    " noremap <leader>y "*y
+    " noremap <leader>yy "*Y
 "end
 
 " Preserve indentation while pasting text from the OS X clipboard
-noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" noremap <C-c> "+y
+" noremap <C-p> "+p
+" noremap <C-x> "+x
+
+" copy and paste
+vmap <C-y> "+yi
+vmap <C-x> "+c
+vmap <C-p> c<ESC>"+p
+imap <C-p> <ESC>"+pa
 
 "" PYTHON
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -207,6 +217,9 @@ set scrolloff=4
 set backspace=indent,eol,start
 
 set number
+
+set guioptions+=a
+set clipboard=unnamedplus
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -391,9 +404,9 @@ set listchars=tab:▸\ ,eol:¬,extends:>,precedes:>,trail:.
 " GUI RELATED STUFF
 if has("gui_running")
     " On Mac OS
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
     " On Ubuntu
-    " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set columns=110
     set lines=50
     set antialias
@@ -430,7 +443,7 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
 let g:syntastic_python_python_exec = 'python'
-let g:syntastic_python_pylint_exe = 'python -m pylint'
+let g:syntastic_python_pylint_exec = 'python -m pylint'
 let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
