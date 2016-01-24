@@ -10,10 +10,13 @@ Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
+Plug 'tpope/vim-fugitive'
 
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'tomasr/molokai'
+" Plug 'KabbAmine/yowish.vim'
+
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -169,7 +172,7 @@ function! TrimWhiteSpace()
     %s/\s\+$//e
 endfunction
 
-nnoremap <silent> <Leader>dts :call TrimWhiteSpace()<CR>
+nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
 "" nerdtree
 map <leader>n :NERDTreeToggle<CR>
@@ -346,7 +349,6 @@ let g:molokai_original = 0
 set background=dark
 colorscheme molokai
 
-
 " let g:ShowTrailingWhitespace_FilterFunc = ''
 " let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
 
@@ -368,8 +370,6 @@ colorscheme molokai
 " let g:ShowTrailingWhitespace_FilterFunc = ''
 " let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
 
-nnoremap <Leader>d$ :<C-u>%DeleteTrailingWhitespace<CR>
-vnoremap <Leader>d$ :DeleteTrailingWhitespace<CR>
 
 " Makes tab switching between matching brakets
 nnoremap <tab> %
@@ -448,7 +448,7 @@ let g:netrw_silent        = 1
 let g:netrw_special_syntax= 1
 
 " YCM
-let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
