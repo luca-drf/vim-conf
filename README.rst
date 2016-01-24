@@ -7,7 +7,6 @@ First clone the proper branch
 
     git clone https://github.com/radome/vim-conf.git ~/.vim && \
     cd ~/.vim && \
-    git checkout -t origin/plug && \
     ln -s ~/.vim/vimrc ~/.vimrc
 
 Then install the plugins by calling
