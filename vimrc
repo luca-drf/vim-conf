@@ -348,6 +348,7 @@ let g:Tex_IgnoreLevel = 9
 let g:molokai_original = 0
 set background=dark
 colorscheme molokai
+let python_highlight_all = 1
 
 " let g:ShowTrailingWhitespace_FilterFunc = ''
 " let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
