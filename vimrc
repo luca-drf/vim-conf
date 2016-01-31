@@ -406,9 +406,9 @@ set listchars=tab:▸\ ,eol:¬,extends:>,precedes:>,trail:.
 " GUI RELATED STUFF
 if has("gui_running")
     " On Mac OS
-    "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
     " On Ubuntu
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set columns=110
     set lines=50
     set antialias
