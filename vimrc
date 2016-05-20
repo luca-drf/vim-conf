@@ -2,7 +2,7 @@
 "execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
-" Load 
+" Load
 Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -44,15 +44,15 @@ noremap <C-Down>  :wincmd j<CR>
 noremap <C-Up>    :wincmd k<CR>
 noremap <C-Right> :wincmd l<CR>
 
-noremap <C-d> :vertical resize +5<CR>
-noremap <C-f> :vertical resize -5<CR>
 " automatically reload vimrc when it's saved
-" au BufWritePost .vimrc so ~/.vimrc
+au BufWritePost .vimrc so ~/.vimrc
 
 let mapleader = ","
 
 " map sort function to a key
 vnoremap <leader>s :sort<CR>
+map <leader>m :vertical resize +5<CR>
+map <leader>l :vertical resize -5<CR>
 
 " easier moving of code blocks
 vnoremap < <gv
@@ -155,12 +155,10 @@ au FileType python set nosmartindent autoindent
 "    execfile(activate_this, dict(__file__=activate_this))
 "EOF
 
-"" powerline
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
-"let g:powerline_theme='short'
 
 "" airline
 let g:airline_powerline_fonts = 1
+let g:airline_exclude_preview = 1
 let g:bufferline_echo = 0
 let g:airline_theme='molokai'
 let g:airline_mode_map = {
@@ -176,6 +174,7 @@ let g:airline_mode_map = {
       \ }
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
+let g:airline#extensions#syntastic#enabled = 0
 
 
 " Removes trailing spaces
@@ -184,7 +183,6 @@ function! TrimWhiteSpace()
 endfunction
 
 nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
-
 "" nerdtree
 map <leader>n :NERDTreeToggle<CR>
 
@@ -445,7 +443,6 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
 let g:syntastic_python_python_exec = 'python'
 let g:syntastic_python_pylint_exec = 'python -m pylint'
-let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 " vim-markdown
