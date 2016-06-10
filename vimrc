@@ -23,7 +23,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
+Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
