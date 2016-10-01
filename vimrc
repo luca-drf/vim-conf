@@ -1,5 +1,3 @@
-"runtime bundle/vim-pathogen/autoload/pathogen.vim
-"execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
 " Load 
@@ -23,7 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-Plug 'http://git.code.sf.net/p/vim-latex/vim-latex', { 'for':  'tex' }
+Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
@@ -99,24 +97,24 @@ let g:gundo_right = 0
 
 " let g:pep8_map='<leader>8'
 
-"if has('macunix')
-"    " Yank text to the OS X clipboard
-    " noremap <leader>y "*y
-    " noremap <leader>yy "*Y
-"end
+" if has('macunix')
+    " Yank text to the OS X clipboard
+    noremap <leader>y "*y
+    noremap <leader>yy "*Y
+" end
 
 " Preserve indentation while pasting text from the OS X clipboard
-" noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " noremap <C-c> "+y
 " noremap <C-p> "+p
 " noremap <C-x> "+x
 
 " copy and paste
-vmap <C-y> "+yi
-vmap <C-x> "+c
-vmap <C-p> c<ESC>"+p
-imap <C-p> <ESC>"+pa
+" vmap <C-y> "+yi
+" vmap <C-x> "+c
+" vmap <C-p> c<ESC>"+p
+" imap <C-p> <ESC>"+pa
 
 "" PYTHON
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -174,9 +172,11 @@ let g:airline_mode_map = {
       \ 's'  : 'S',
       \ 'S'  : 'S',
       \ }
+
+let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
-
+let g:airline_exclude_preview = 1
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -313,12 +313,12 @@ let g:tex_indent_items = 1
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf,dvi'
 
-let g:Tex_CompileRule_dvi = '/usr/texbin/latex --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps = '/usr/texbin/dvips -Pwww -o $*.ps $*.dvi'
-let g:Tex_CompileRule_pdf = '/usr/texbin/pdflatex -synctex=1 --interaction=nonstopmode $*'
+let g:Tex_CompileRule_dvi = '/Library/TeX/texbin/latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = '/Library/TeX/texbin/dvips -Pwww -o $*.ps $*.dvi'
+let g:Tex_CompileRule_pdf = '/Library/TeX/texbin/pdflatex -synctex=1 --interaction=nonstopmode $*'
 
 let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_dvipdf = '/usr/texbin/dvipdfm $*.dvi'
+let g:Tex_CompileRule_dvipdf = '/Library/TeX/texbin/dvipdfm $*.dvi'
 "if has('macunix')
 "    let g:Tex_ViewRule_dvi = 'texniscope'
 "    let g:Tex_ViewRule_ps = 'Preview'
@@ -444,11 +444,9 @@ let NERDCompactSexyComs = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
-let g:syntastic_python_python_exec = 'python'
-let g:syntastic_python_pylint_exec = 'python -m pylint'
-let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
+
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
