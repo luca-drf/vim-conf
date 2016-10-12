@@ -26,6 +26,7 @@ Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'othree/xml.vim', { 'for': 'xml' }
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 call plug#end()
@@ -214,7 +215,7 @@ set title
 set nocp
 set modelines=0
 
-set scrolloff=4
+set scrolloff=5
 
 set backspace=indent,eol,start
 
@@ -223,11 +224,11 @@ set number
 set guioptions+=a
 set clipboard=unnamedplus
 
-"folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+"" folding settings
+"set foldmethod=indent   "fold based on indent
+"set foldnestmax=10      "deepest fold is 10 levels
+"set nofoldenable        "dont fold by default
+"set foldlevel=1         "this is just what i use
 
 
 "" Toggle relative line number
@@ -441,8 +442,8 @@ let NERDCompactSexyComs = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pep8']
-let g:syntastic_python_python_exec = 'python'
-let g:syntastic_python_pylint_exec = 'python -m pylint'
+" let g:syntastic_python_python_exec = 'python'
+" let g:syntastic_python_pylint_exec = 'python -m pylint'
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 " vim-markdown
