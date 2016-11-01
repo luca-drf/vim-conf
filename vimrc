@@ -10,6 +10,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
@@ -190,6 +192,7 @@ map <leader>n :NERDTreeToggle<CR>
 
 " ack (fuzzy search)
 nmap <leader>a <Esc>:Ack!
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
