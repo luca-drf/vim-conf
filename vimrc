@@ -12,6 +12,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
@@ -189,6 +191,9 @@ map <leader>n :NERDTreeToggle<CR>
 
 " ack (fuzzy search)
 nmap <leader>a <Esc>:Ack!
+" set Ack command to use ag instead
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
@@ -446,6 +451,12 @@ let g:syntastic_python_checkers = ['pylint', 'pep8']
 " let g:syntastic_python_pylint_exec = 'python -m pylint'
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
+let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "passive_filetypes": ["python"] }
+
+let g:syntastic_check_on_wq = 0
+
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
@@ -470,3 +481,8 @@ let g:ycm_confirm_extra_conf = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
+
+" fzf
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
