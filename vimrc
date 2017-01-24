@@ -47,6 +47,11 @@ noremap <C-Down>  :wincmd j<CR>
 noremap <C-Up>    :wincmd k<CR>
 noremap <C-Right> :wincmd l<CR>
 
+" work with buffers
+noremap <C-TAB>   :bn<CR>
+noremap <C-S-TAB> :bp<CR>
+
+
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
 
@@ -178,7 +183,10 @@ let g:airline_mode_map = {
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
 let g:airline#extensions#syntastic#enabled = 0
-
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#buffer_min_count = 2
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
