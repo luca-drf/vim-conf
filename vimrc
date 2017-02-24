@@ -12,9 +12,9 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'tomasr/molokai'
@@ -94,7 +94,7 @@ vnoremap > >gv
 
 
 " tasklist de ambiguate
-" map <leader>td <Plug>TaskList
+map <leader>td :TaskList<CR>
 
 " gundo
 map <leader>g :GundoToggle<CR>
@@ -212,8 +212,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set wrap
-set textwidth=79
-set formatoptions=lv
+set textwidth=80
+set formatoptions=lb
 set colorcolumn=80
 "set list
 set smartindent
@@ -419,13 +419,13 @@ if has("gui_running")
     " On Mac OS
     "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
     " On Ubuntu
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    set guifont=Hack\ 10
     set columns=110
     set lines=50
     set antialias
     set guioptions-=T
 else
-    set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Hack\ 10
     let g:airline_powerline_fonts = 0
 endif
 
