@@ -12,7 +12,9 @@ Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-unimpaired'
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'tomasr/molokai'
@@ -21,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
@@ -48,6 +51,12 @@ noremap <C-d> :vertical resize +5<CR>
 noremap <C-f> :vertical resize -5<CR>
 " automatically reload vimrc when it's saved
 " au BufWritePost .vimrc so ~/.vimrc
+
+
+" work with buffers
+noremap <C-TAB>   :bn<CR>
+noremap <C-S-TAB> :bp<CR>
+
 
 let mapleader = ","
 
@@ -118,13 +127,6 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 " vmap <C-p> c<ESC>"+p
 " imap <C-p> <ESC>"+pa
 
-"" PYTHON
-au FileType python set omnifunc=pythoncomplete#Complete
-
-au FileType python set nosmartindent autoindent
-" au FileType python let &path = &path . "," . substitute($PYTHONPATH, ';', ',', 'g')
-
-
 "rope
 "map <leader>j :RopeGotoDefinition<CR>
 "map <leader>r :RopeRename<CR>
@@ -179,6 +181,11 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
 let g:airline_exclude_preview = 1
+let g:airline#extensions#syntastic#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#buffer_min_count = 2
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -189,6 +196,8 @@ nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
 "" nerdtree
 map <leader>n :NERDTreeToggle<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " ack (fuzzy search)
 nmap <leader>a <Esc>:Ack!
@@ -409,7 +418,7 @@ set listchars=tab:▸\ ,eol:¬,extends:>,precedes:>,trail:.
 " GUI RELATED STUFF
 if has("gui_running")
     " On Mac OS
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+    set guifont=Hack:h12
     " On Ubuntu
     " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set columns=110
@@ -474,3 +483,18 @@ let g:ycm_confirm_extra_conf = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
+
+
+"" PYTHON
+au FileType python set omnifunc=pythoncomplete#Complete
+
+au FileType python set nosmartindent autoindent
+" au FileType python let &path = &path . "," . substitute($PYTHONPATH, ';', ',', 'g')
+
+
+"" RUBY
+au Filetype ruby set softtabstop=2
+au Filetype ruby set sw=2
+au Filetype ruby set ts=2
+
+
