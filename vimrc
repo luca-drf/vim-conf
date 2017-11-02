@@ -10,8 +10,9 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
@@ -186,6 +187,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#show_splits = 0
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -194,12 +196,24 @@ endfunction
 
 nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
-"" nerdtree
+"" NERDTREE
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" ack (fuzzy search)
+" Start automatically if no files specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
+
+" Start if opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" Close vim if only NERDtree left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" ACK (fuzzy search)
 nmap <leader>a <Esc>:Ack!
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -242,7 +256,7 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
-
+set diffopt+=vertical
 
 "" Toggle relative line number
 function! NumberToggle()
@@ -325,12 +339,12 @@ let g:tex_indent_items = 1
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf,dvi'
 
-let g:Tex_CompileRule_dvi = '/Library/TeX/texbin/latex --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps = '/Library/TeX/texbin/dvips -Pwww -o $*.ps $*.dvi'
-let g:Tex_CompileRule_pdf = '/Library/TeX/texbin/pdflatex -synctex=1 --interaction=nonstopmode $*'
+let g:Tex_CompileRule_dvi = '~/texlive/2017/bin/x86_64-darwin/latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = ' ~/texlive/2017/bin/x86_64-darwin/dvips -Pwww -o $*.ps $*.dvi'
+let g:Tex_CompileRule_pdf = '~/texlive/2017/bin/x86_64-darwin/pdflatex -synctex=1 --interaction=nonstopmode $*'
 
 let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_dvipdf = '/Library/TeX/texbin/dvipdfm $*.dvi'
+let g:Tex_CompileRule_dvipdf = '~/texlive/2017/bin/x86_64-darwin/dvipdfm $*.dvi'
 "if has('macunix')
 "    let g:Tex_ViewRule_dvi = 'texniscope'
 "    let g:Tex_ViewRule_ps = 'Preview'
@@ -489,7 +503,6 @@ let g:go_highlight_build_constraints = 1
 au FileType python set omnifunc=pythoncomplete#Complete
 
 au FileType python set nosmartindent autoindent
-" au FileType python let &path = &path . "," . substitute($PYTHONPATH, ';', ',', 'g')
 
 
 "" RUBY
@@ -497,4 +510,12 @@ au Filetype ruby set softtabstop=2
 au Filetype ruby set sw=2
 au Filetype ruby set ts=2
 
+
+"" RUBY
+au Filetype eruby set softtabstop=2
+au Filetype eruby set sw=2
+au Filetype eruby set ts=2
+
+"" GITGUTTER
+let g:gitgutter_grep_command = 'ag'
 
