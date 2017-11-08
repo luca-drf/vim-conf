@@ -431,7 +431,7 @@ set listchars=tab:▸\ ,eol:¬,extends:>,precedes:>,trail:.
 " GUI RELATED STUFF
 if has("gui_running")
     " On Mac OS
-    set guifont=Hack:h14
+    set guifont=Hack:h12
     " On Ubuntu
     " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set columns=110
@@ -439,7 +439,7 @@ if has("gui_running")
     set antialias
     set guioptions-=T
 else
-    set guifont=Hack\ 14
+    set guifont=Hack\ 12
     let g:airline_powerline_fonts = 0
 endif
 
