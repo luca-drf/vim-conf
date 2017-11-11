@@ -6,7 +6,7 @@ Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
@@ -39,6 +39,7 @@ call plug#end()
 syntax on
 filetype plugin indent on
 
+
 let g:plug_timeout = 10000
 
 " Only for MacVim
@@ -55,11 +56,9 @@ noremap <C-f> :vertical resize -5<CR>
 " automatically reload vimrc when it's saved
 " au BufWritePost .vimrc so ~/.vimrc
 
-
 " work with buffers
 noremap <C-TAB>   :bn<CR>
 noremap <C-S-TAB> :bp<CR>
-
 
 let mapleader = ","
 
@@ -442,7 +441,7 @@ if has("gui_running")
     set antialias
     set guioptions-=T
 else
-    set guifont=DejaVu\ Sans\ Mono\ 10
+    set guifont=Hack\ 12
     let g:airline_powerline_fonts = 0
 endif
 
@@ -505,7 +504,6 @@ let g:go_highlight_build_constraints = 1
 au FileType python set omnifunc=pythoncomplete#Complete
 
 au FileType python set nosmartindent autoindent
-
 
 "" RUBY
 au Filetype ruby set softtabstop=2
