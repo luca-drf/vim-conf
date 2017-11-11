@@ -30,6 +30,8 @@ Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'posva/vim-vue', { 'for': 'vue' }
+
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 call plug#end()
@@ -215,7 +217,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " ACK (fuzzy search)
 nmap <leader>a <Esc>:Ack!
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --vimgrep'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
@@ -469,7 +471,7 @@ let NERDCompactSexyComs = 1
 " Syntastic
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_python_checkers = ['pylint', 'pep8']
+let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 
@@ -511,10 +513,15 @@ au Filetype ruby set sw=2
 au Filetype ruby set ts=2
 
 
-"" RUBY
+"" ERUBY
 au Filetype eruby set softtabstop=2
 au Filetype eruby set sw=2
 au Filetype eruby set ts=2
+
+"" YAML
+au Filetype yaml set softtabstop=2
+au Filetype yaml set sw=2
+au Filetype yaml set ts=2
 
 "" GITGUTTER
 let g:gitgutter_grep_command = 'ag'
