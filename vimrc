@@ -6,7 +6,7 @@ Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
@@ -16,6 +16,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/unite.vim'
+Plug 'rstacruz/vim-fastunite'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
+Plug 'tsukkee/unite-tag'
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'tomasr/molokai'
@@ -31,6 +38,7 @@ Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 " Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
@@ -203,8 +211,8 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 " Start automatically if no files specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
 
 " Start if opening a directory
 autocmd StdinReadPre * let s:std_in=1
@@ -493,6 +501,8 @@ let g:ycm_auto_trigger = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_python_binary_path = 'python'
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 " vim-go
 let g:go_highlight_functions = 1
@@ -524,3 +534,8 @@ au Filetype yaml set ts=2
 "" GITGUTTER
 let g:gitgutter_grep_command = 'ag'
 
+"" Unite
+map <C-p> [unite]p
+
+"" Gutentag
+let g:gutentags_ctags_tagfile = '.tags'
