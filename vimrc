@@ -511,8 +511,6 @@ let g:go_highlight_build_constraints = 1
 
 
 "" PYTHON
-au FileType python set omnifunc=pythoncomplete#Complete
-
 au FileType python set nosmartindent autoindent
 
 "" RUBY
@@ -533,6 +531,7 @@ au Filetype yaml set ts=2
 
 "" GITGUTTER
 let g:gitgutter_grep_command = 'ag'
+let g:gitgutter_sign_removed = '-'
 
 "" Unite
 map <C-p> [unite]p
