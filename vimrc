@@ -141,35 +141,6 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 "map <leader>j :RopeGotoDefinition<CR>
 "map <leader>r :RopeRename<CR>
 
-" django
-" map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
-
-"pytest
-" Execute the tests
-" nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-" nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-" nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-" " cycle through test errors
-" nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-" nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-" nmap <silent><Leader>te <Esc>:Pytest error<CR>
-
-"" virtualenv
-"" Add the virtualenv's site-packages to vim path
-"py << EOF
-"import os.path
-"import sys
-"import vim
-"if 'VIRTUAL_ENV' in os.environ:
-"    project_base_dir = os.environ['VIRTUAL_ENV']
-"    sys.path.insert(0, project_base_dir)
-"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"    execfile(activate_this, dict(__file__=activate_this))
-"EOF
-
-"" powerline
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
-"let g:powerline_theme='short'
 
 "" airline
 let g:airline_powerline_fonts = 1
@@ -280,10 +251,6 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
-
-"map <C-L> :!/usr/local/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-"set tags=~/.vim/stdtags,tags,.tags,../tags
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 
 "if has("autocmd")
@@ -399,26 +366,17 @@ set background=dark
 colorscheme molokai
 let python_highlight_all = 1
 
-" let g:ShowTrailingWhitespace_FilterFunc = ''
-" let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
-
-"let g:DeleteTrailingWhitespace_Action = 'ask'
-"let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
-
-
-"highlight ShowTrailingWhitespace term=standout ctermbg=Red guibg=Red
-
 
 "flag problematic whitespace (trailing and spaces before tabs)
 "Note you get the same by doing let c_space_errors=1 but
 "this rule really applys to everything.
 highlight RedundantSpaces term=standout ctermbg=darkred guibg=#300016
-match RedundantSpaces /\s\+$\| \+\ze\t/ "\ze sets end of match so only spaces highlighted
 
-"highlight ShowTrailingWhitespace term=standout ctermbg=Red guibg=Red
-" let g:ShowTrailingWhitespace = 0
-" let g:ShowTrailingWhitespace_FilterFunc = ''
-" let g:ShowTrailingWhitespace_FilterFunc = function('MyFunc')
+function! ShowWhiteSpaces()
+    match RedundantSpaces /\s\+$\| \+\ze\t/ "\ze sets end of match so only spaces highlighted
+endfunction
+nnoremap <silent> <Leader>st :call ShowWhiteSpaces()<CR>
+autocmd BufWritePre * :call ShowWhiteSpaces()
 
 
 " Makes tab switching between matching brakets
