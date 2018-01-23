@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-" Load 
+" Load
 Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -372,13 +372,12 @@ let python_highlight_all = 1
 "flag problematic whitespace (trailing and spaces before tabs)
 "Note you get the same by doing let c_space_errors=1 but
 "this rule really applys to everything.
-highlight RedundantSpaces term=standout ctermbg=darkred guibg=#300016
-
-function! ShowWhiteSpaces()
-    match RedundantSpaces /\s\+$\| \+\ze\t/ "\ze sets end of match so only spaces highlighted
-endfunction
-nnoremap <silent> <Leader>st :call ShowWhiteSpaces()<CR>
-autocmd BufWritePre * :call ShowWhiteSpaces()
+highlight ExtraWhitespace term=standout ctermbg=darkred guibg=#300016
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 
 " Makes tab switching between matching brakets
