@@ -168,6 +168,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#left_sep = "\ue0b0 "
+let g:airline#extensions#tabline#left_alt_sep = "\ue0b1"
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
