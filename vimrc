@@ -61,6 +61,8 @@ noremap <C-Right> :wincmd l<CR>
 
 noremap <C-d> :vertical resize +5<CR>
 noremap <C-f> :vertical resize -5<CR>
+noremap <C-y> :resize +5<CR>
+noremap <C-u> :resize -5<CR>
 " automatically reload vimrc when it's saved
 " au BufWritePost .vimrc so ~/.vimrc
 
