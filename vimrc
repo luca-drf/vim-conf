@@ -11,18 +11,19 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'junegunn/fzf.vim'
+Plug '~/homebrew/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/unite.vim'
-Plug 'rstacruz/vim-fastunite'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
+" Tags
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+" Plug 'Shougo/unite.vim'
+" Plug 'rstacruz/vim-fastunite'
+" Plug 'Shougo/neomru.vim'
+" Plug 'Shougo/unite-outline'
+" Plug 'tsukkee/unite-tag'
 " Color schemes
 " Plug 'jdkanani/vim-material-theme'
 " Plug 'tomasr/molokai'
@@ -61,8 +62,8 @@ noremap <C-Right> :wincmd l<CR>
 
 noremap <C-d> :vertical resize +5<CR>
 noremap <C-f> :vertical resize -5<CR>
-noremap <C-y> :resize +5<CR>
-noremap <C-u> :resize -5<CR>
+noremap <C-q> :resize +5<CR>
+noremap <C-w> :resize -5<CR>
 " automatically reload vimrc when it's saved
 " au BufWritePost .vimrc so ~/.vimrc
 
@@ -294,6 +295,8 @@ if &t_Co > 2 || has("gui_running")
     set incsearch "For fast terminals can highlight search string as you type
 endif
 
+nnoremap <CR> :set hlsearch!<CR>
+
 if &diff
     "I'm only interested in diff colours
     syntax off
@@ -411,7 +414,8 @@ if has("gui_running")
     set guioptions-=T
 else
     set guifont=Hack\ 12
-    let g:airline_powerline_fonts = 0
+    " If you don't have powerline font in the terminal
+    " let g:airline_powerline_fonts = 0
 endif
 
 
@@ -448,13 +452,13 @@ let g:vim_markdown_folding_disabled = 1
 
 
 " netrw
-let g:netrw_altv          = 1
-let g:netrw_fastbrowse    = 2
-let g:netrw_keepdir       = 0
-let g:netrw_liststyle     = 1
-let g:netrw_retmap        = 1
-let g:netrw_silent        = 1
-let g:netrw_special_syntax= 1
+let g:netrw_altv           = 1
+let g:netrw_fastbrowse     = 2
+let g:netrw_keepdir        = 0
+let g:netrw_liststyle      = 1
+let g:netrw_retmap         = 1
+let g:netrw_silent         = 1
+let g:netrw_special_syntax = 1
 
 " YCM
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -491,11 +495,40 @@ au Filetype yaml set sw=2
 au Filetype yaml set ts=2
 
 "" GITGUTTER
+set updatetime=1000  " Global vim update time
 let g:gitgutter_grep_command = 'ag'
 let g:gitgutter_sign_removed = '-'
 
 "" Unite
 map <C-p> [unite]p
 
-"" Gutentag
+"" Gutentags
 let g:gutentags_ctags_tagfile = '.tags'
+
+"" FZF
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
