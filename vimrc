@@ -16,18 +16,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
-" Tags
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
-" Plug 'rstacruz/vim-fastunite'
-" Plug 'Shougo/neomru.vim'
-" Plug 'Shougo/unite-outline'
-" Plug 'tsukkee/unite-tag'
-" Color schemes
-" Plug 'jdkanani/vim-material-theme'
-" Plug 'tomasr/molokai'
-" Plug 'KabbAmine/yowish.vim'
 
 
 " On-demand loading
@@ -41,7 +29,6 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
 
-" Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 call plug#end()
 
@@ -64,8 +51,9 @@ noremap <C-d> :vertical resize +5<CR>
 noremap <C-f> :vertical resize -5<CR>
 noremap <C-q> :resize +5<CR>
 noremap <C-w> :resize -5<CR>
+
 " automatically reload vimrc when it's saved
-" au BufWritePost .vimrc so ~/.vimrc
+au BufWritePost .vimrc so ~/.vimrc
 
 " work with buffers
 noremap <C-TAB>   :bn<CR>
@@ -80,46 +68,11 @@ vnoremap <leader>s :sort<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-"" minibufexpl stuff
-" If you like control + arrow key to navigate windows
-" then perform the remapping
-"
-"noremap <C-Down>  <C-W>j
-"noremap <C-Up>    <C-W>k
-"noremap <C-Left>  <C-W>h
-"noremap <C-Right> <C-W>l
-
-" If you like <C-TAB> and <C-S-TAB> to switch buffers
-" in the current window then perform the remapping
-"
-" noremap <C-TAB>   :MBEbn<CR>
-" noremap <C-S-TAB> :MBEbp<CR>
-"
-" Or, in MRU fashion
-"
-"noremap <C-TAB>   :MBEbf<CR>
-"noremap <C-S-TAB> :MBEbb<CR>
-
-"let g:miniBufExplCycleArround = 1
-
-" map <Leader>to :MBEOpen<cr>
-" map <Leader>tc :MBEClose<cr>
-"map <Leader>tt :MBEToggle<cr>
-
-
-" tasklist de ambiguate
-" map <leader>td <Plug>TaskList
-
 " gundo
 map <leader>g :GundoToggle<CR>
 let g:gundo_width = 30
 let g:gundo_preview_height = 40
 let g:gundo_right = 0
-
-
-"let g:pyflakes_use_quickfix = 0
-
-" let g:pep8_map='<leader>8'
 
 " if has('macunix')
     " Yank text to the OS X clipboard
@@ -139,11 +92,6 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 " vmap <C-x> "+c
 " vmap <C-p> c<ESC>"+p
 " imap <C-p> <ESC>"+pa
-
-"rope
-"map <leader>j :RopeGotoDefinition<CR>
-"map <leader>r :RopeRename<CR>
-
 
 "" airline
 let g:airline_powerline_fonts = 1
@@ -258,14 +206,6 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 
-"if has("autocmd")
-"" When editing a file, always jump to the last cursor position
-""   autocmd BufReadPost *
-""     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-"\   exe "normal g'\"" |
-"\ endif
-"endif
-
 "This is necessary to allow pasting from outside vim. It turns off
 "auto stuff.
 ""You can tell you are in paste mode when the ruler is not visible
@@ -328,13 +268,7 @@ let g:Tex_CompileRule_pdf = '~/texlive/2017/bin/x86_64-darwin/pdflatex -synctex=
 
 let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
 let g:Tex_CompileRule_dvipdf = '~/texlive/2017/bin/x86_64-darwin/dvipdfm $*.dvi'
-"if has('macunix')
-"    let g:Tex_ViewRule_dvi = 'texniscope'
-"    let g:Tex_ViewRule_ps = 'Preview'
-"    let g:Tex_ViewRule_pdf = 'Skim'
-"else
 
-"endif
 let g:Tex_FormatDependency_pdf  = 'pdf'
 let g:Tex_FormatDependency_ps  = 'dvi,ps'
 let g:Tex_FormatDependency_pspdf = 'dvi,ps,pspdf'
@@ -353,20 +287,6 @@ let g:Tex_IgnoredWarnings ='
       \"\oval, \circle, or \line size unavailable\n".
       \"Text page %# contains only floats\n"'
 let g:Tex_IgnoreLevel = 9
-
-"" CLOJURE
-"let vimclojure#HighlightBuiltins = 1
-"set statusline+=%(%{Tlist_Get_Tagname_By_Line()}%), " Function name
-"set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-
-" erlang
-" " ERLANG STUFF
-"let g:erlangHighlightBif=1
-"let g:erlangManPath="/usr/local/Cellar/erlang/R14B03/share/man"
-
-" Gist plugin
-"let g:gist_detect_filetype = 1
-"let g:gist_open_browser_after_post = 1
 
 let g:molokai_original = 0
 set background=dark
@@ -508,6 +428,9 @@ let g:gutentags_ctags_tagfile = '.tags'
 "" FZF
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>t :call fzf#vim#tags(expand('<cword>'))<CR>
+
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
