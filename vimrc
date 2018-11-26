@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
 
 
 " On-demand loading
@@ -24,7 +25,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
-Plug 'plasticboy/vim-markdown', { 'for': 'mkd' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
@@ -262,12 +262,12 @@ let g:tex_indent_items = 1
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf,dvi'
 
-let g:Tex_CompileRule_dvi = '~/texlive/2017/bin/x86_64-darwin/latex --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps = ' ~/texlive/2017/bin/x86_64-darwin/dvips -Pwww -o $*.ps $*.dvi'
-let g:Tex_CompileRule_pdf = '~/texlive/2017/bin/x86_64-darwin/pdflatex -synctex=1 --interaction=nonstopmode $*'
+let g:Tex_CompileRule_dvi = '~/texlive/2018/bin/x86_64-darwin/latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = ' ~/texlive/2018/bin/x86_64-darwin/dvips -Pwww -o $*.ps $*.dvi'
+let g:Tex_CompileRule_pdf = '~/texlive/2018/bin/x86_64-darwin/pdflatex -synctex=1 --interaction=nonstopmode $*'
 
 let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_dvipdf = '~/texlive/2017/bin/x86_64-darwin/dvipdfm $*.dvi'
+let g:Tex_CompileRule_dvipdf = '~/texlive/2018/bin/x86_64-darwin/dvipdfm $*.dvi'
 
 let g:Tex_FormatDependency_pdf  = 'pdf'
 let g:Tex_FormatDependency_ps  = 'dvi,ps'
