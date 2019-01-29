@@ -74,11 +74,9 @@ let g:gundo_width = 30
 let g:gundo_preview_height = 40
 let g:gundo_right = 0
 
-" if has('macunix')
-    " Yank text to the OS X clipboard
-    noremap <leader>y "*y
-    noremap <leader>yy "*Y
-" end
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
 
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
@@ -182,7 +180,7 @@ set backspace=indent,eol,start
 set number
 
 set guioptions+=a
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -394,7 +392,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_build_constraints = 1
 
-
 "" PYTHON
 au FileType python set nosmartindent autoindent
 
@@ -418,6 +415,10 @@ au Filetype yaml set ts=2
 set updatetime=1000  " Global vim update time
 let g:gitgutter_grep_command = 'ag'
 let g:gitgutter_sign_removed = '-'
+highlight GitGutterAdd    guifg=#009900 guibg=#232526 ctermfg=2 ctermbg=0
+highlight GitGutterChange guifg=#bbbb00 guibg=#232526 ctermfg=3 ctermbg=0
+highlight GitGutterDelete guifg=#ff2222 guibg=#232526 ctermfg=1 ctermbg=0
+
 
 "" Unite
 map <C-p> [unite]p
