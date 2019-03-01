@@ -4,19 +4,19 @@ call plug#begin('~/.vim/plugged')
 Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe'
-Plug 'eiginn/netrw'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug '~/homebrew/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe'
+Plug 'eiginn/netrw'
+Plug '~/homebrew/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 
 " On-demand loading
@@ -119,6 +119,7 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#left_sep = "\ue0b0 "
 let g:airline#extensions#tabline#left_alt_sep = "\ue0b1"
+let g:airline#extensions#hunks#non_zero_only = 1
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -179,7 +180,7 @@ set backspace=indent,eol,start
 
 set number
 
-set guioptions+=a
+set guioptions=
 set clipboard=unnamed
 
 "folding settings
@@ -362,6 +363,7 @@ let NERDCompactSexyComs = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 
@@ -400,6 +402,15 @@ au Filetype ruby set softtabstop=2
 au Filetype ruby set sw=2
 au Filetype ruby set ts=2
 
+"" VUE
+au Filetype vue set softtabstop=2
+au Filetype vue set sw=2
+au Filetype vue set ts=2
+
+"" JAVASCRIPT
+au Filetype javascript set softtabstop=2
+au Filetype javascript set sw=2
+au Filetype javascript set ts=2
 
 "" ERUBY
 au Filetype eruby set softtabstop=2
@@ -431,6 +442,9 @@ let g:gutentags_ctags_tagfile = '.tags'
 let g:fzf_buffers_jump = 1
 nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>t :call fzf#vim#tags(expand('<cword>'))<CR>
+
+"" Vue
+let g:vue_disable_pre_processors=1
 
 
 " [[B]Commits] Customize the options used by 'git log':
