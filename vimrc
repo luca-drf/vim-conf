@@ -1,6 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
 " Load
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -15,9 +17,10 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug '~/homebrew/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
+" Themes
+" Plug 'jacoborus/tender.vim'
+Plug 'lifepillar/vim-solarized8'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -32,7 +35,7 @@ Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 call plug#end()
 
-syntax on
+syntax enable
 filetype plugin indent on
 
 
@@ -94,7 +97,7 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 "" airline
 let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
-let g:airline_theme='molokai'
+let g:airline_theme='solarized'
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -132,6 +135,9 @@ nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+" Prevents VIM to close the whole window
+nnoremap \d :bp<cr>:bd #<cr>
+
 
 " Start automatically if no files specified
 " autocmd StdinReadPre * let s:std_in=1
@@ -181,6 +187,7 @@ set backspace=indent,eol,start
 set number
 
 set guioptions=
+
 set clipboard=unnamed
 
 "folding settings
@@ -229,7 +236,7 @@ endif
 
 "Syntax highlighting if appropriate
 if &t_Co > 2 || has("gui_running")
-    syntax on
+    syntax enable
     set nohlsearch
     set incsearch "For fast terminals can highlight search string as you type
 endif
@@ -287,16 +294,30 @@ let g:Tex_IgnoredWarnings ='
       \"Text page %# contains only floats\n"'
 let g:Tex_IgnoreLevel = 9
 
-let g:molokai_original = 0
-set background=dark
-colorscheme molokai
-let python_highlight_all = 1
 
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+"" MOLOKAI
+" let g:molokai_original = 0
+
+"" SOLARIZED
+" let g:solarized_visibility = 'high'
+" let g:solarized_diffmode = 'high'
+if (has("gui_running"))
+    let g:solarized_term_italics = 1
+endif
+
+
+set background=dark
+let python_highlight_all = 1
+colorscheme solarized8
 
 "flag problematic whitespace (trailing and spaces before tabs)
 "Note you get the same by doing let c_space_errors=1 but
 "this rule really applys to everything.
-highlight ExtraWhitespace term=standout ctermbg=darkred guibg=#300016
+highlight ExtraWhitespace term=standout ctermbg=17 guibg=#001d30
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -362,8 +383,18 @@ let NERDCompactSexyComs = 1
 " Syntastic
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_generic = 1
+let g:syntastic_javascript_eslint_exec = '/bin/ls'
+let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
+let g:syntastic_javascript_eslint_args = '-f compact'
+let g:syntastic_vue_checkers = ['eslint']
+let g:syntastic_vue_eslint_generic = 1
+let g:syntastic_vue_eslint_exec = '/bin/ls'
+let g:syntastic_vue_eslint_exe = 'yarn run eslint'
+let g:syntastic_vue_eslint_args = '-f compact'
 let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
-let g:syntastic_python_pylint_post_args="--max-line-length=120"
+let g:syntastic_python_pylint_post_args = "--max-line-length=120"
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 
@@ -426,9 +457,11 @@ au Filetype yaml set ts=2
 set updatetime=1000  " Global vim update time
 let g:gitgutter_grep_command = 'ag'
 let g:gitgutter_sign_removed = '-'
-highlight GitGutterAdd    guifg=#009900 guibg=#232526 ctermfg=2 ctermbg=0
-highlight GitGutterChange guifg=#bbbb00 guibg=#232526 ctermfg=3 ctermbg=0
-highlight GitGutterDelete guifg=#ff2222 guibg=#232526 ctermfg=1 ctermbg=0
+
+" molokai colors
+"highlight GitGutterAdd    guifg=#009900 guibg=#232526 ctermfg=2 ctermbg=0
+"highlight GitGutterChange guifg=#bbbb00 guibg=#232526 ctermfg=3 ctermbg=0
+"highlight GitGutterDelete guifg=#ff2222 guibg=#232526 ctermfg=1 ctermbg=0
 
 
 "" Unite
