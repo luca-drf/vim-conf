@@ -1,3 +1,6 @@
+set nocompatible " be iMproved, required
+filetype off " required
+
 call plug#begin('~/.vim/plugged')
 
 " Load
@@ -35,11 +38,10 @@ Plug 'vim-python/python-syntax', { 'for': 'python' }
 
 call plug#end()
 
+let g:plug_timeout = 10000
+
 syntax enable
 filetype plugin indent on
-
-
-let g:plug_timeout = 10000
 
 " Only for MacVim
 " let $PATH=$PATH . ':/usr/local/bin:/usr/bin'
@@ -234,13 +236,6 @@ if v:version >= 700 && has("gui_running")
     "set cursorcolumn "highlight current column
 endif
 
-"Syntax highlighting if appropriate
-if &t_Co > 2 || has("gui_running")
-    syntax enable
-    set nohlsearch
-    set incsearch "For fast terminals can highlight search string as you type
-endif
-
 nnoremap <CR> :set hlsearch!<CR>
 
 if &diff
@@ -294,24 +289,28 @@ let g:Tex_IgnoredWarnings ='
       \"Text page %# contains only floats\n"'
 let g:Tex_IgnoreLevel = 9
 
-
-if (has("termguicolors"))
-    set termguicolors
-endif
-
 "" MOLOKAI
 " let g:molokai_original = 0
 
 "" SOLARIZED
+if (has("termguicolors"))
+    set termguicolors
+endif
+
 " let g:solarized_visibility = 'high'
 " let g:solarized_diffmode = 'high'
 if (has("gui_running"))
     let g:solarized_term_italics = 1
+else
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &t_Co = 16
 endif
 
 
 set background=dark
-let python_highlight_all = 1
+let g:python_highlight_all = 1
+let g:python_highlight_space_errors = 0
 colorscheme solarized8
 
 "flag problematic whitespace (trailing and spaces before tabs)
@@ -324,6 +323,11 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+"Syntax highlighting if appropriate
+if (has("gui_running"))
+    set nohlsearch
+    set incsearch "For fast terminals can highlight search string as you type
+endif
 
 " Makes tab switching between matching brakets
 nnoremap <tab> %
