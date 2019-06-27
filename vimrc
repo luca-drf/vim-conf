@@ -231,12 +231,10 @@ set wildmenu
 ""Ignore these files when completing names and in Explorer
 set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,CMakeFiles,*.beam,.hg
 
-if v:version >= 700 && has("gui_running")
+if has("gui_running")
     set cursorline   "highlight current line
     "set cursorcolumn "highlight current column
 endif
-
-nnoremap <CR> :set hlsearch!<CR>
 
 if &diff
     "I'm only interested in diff colours
@@ -249,10 +247,8 @@ let g:is_posix = 1
 
 set shell=/bin/zsh
 
-if version >= 703
-    set undofile
-    set undodir=$HOME/.vim-undos/
-endif
+set undofile
+set undodir=$HOME/.vim-undos/
 
 set shellslash
 
@@ -302,9 +298,9 @@ endif
 if (has("gui_running"))
     let g:solarized_term_italics = 1
 else
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    let &t_Co = 16
+    " let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
+    " let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
+    " let &t_Co = 16
 endif
 
 
@@ -323,11 +319,8 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-"Syntax highlighting if appropriate
-if (has("gui_running"))
-    set nohlsearch
-    set incsearch "For fast terminals can highlight search string as you type
-endif
+set nohlsearch
+set incsearch "For fast terminals can highlight search string as you type
 
 " Makes tab switching between matching brakets
 nnoremap <tab> %
