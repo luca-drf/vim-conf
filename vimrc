@@ -319,8 +319,8 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-set nohlsearch
 set incsearch "For fast terminals can highlight search string as you type
+set nohlsearch
 
 " Makes tab switching between matching brakets
 nnoremap <tab> %
