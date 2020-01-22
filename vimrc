@@ -1,5 +1,4 @@
 "runtime bundle/vim-pathogen/autoload/pathogen.vim
-"execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
 " Load
