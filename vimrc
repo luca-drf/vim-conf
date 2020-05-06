@@ -10,31 +10,32 @@ Plug 'Raimondi/delimitMate'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
-Plug '~/homebrew/opt/fzf'
-Plug 'junegunn/fzf.vim'
+"Plug '/usr/local/opt/fzf'
+"Plug 'junegunn/fzf.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'dense-analysis/ale'
 
 " Themes
 " Plug 'jacoborus/tender.vim'
 Plug 'lifepillar/vim-solarized8'
+Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
-Plug 'mileszs/ack.vim', { 'on': 'Ack' }
+" Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
 call plug#end()
 
@@ -52,10 +53,10 @@ noremap <C-Down>  :wincmd j<CR>
 noremap <C-Up>    :wincmd k<CR>
 noremap <C-Right> :wincmd l<CR>
 
-noremap <C-d> :vertical resize +5<CR>
-noremap <C-f> :vertical resize -5<CR>
-noremap <C-q> :resize +5<CR>
-noremap <C-w> :resize -5<CR>
+" noremap <C-d> :vertical resize +5<CR>
+" noremap <C-f> :vertical resize -5<CR>
+" noremap <C-q> :resize +5<CR>
+" noremap <C-w> :resize -5<CR>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
@@ -86,6 +87,12 @@ noremap <leader>yy "*Y
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
+nnoremap d "_d
+nnoremap D "_D
+
+nnoremap "*d "*d
+nnoremap "*D "*D
+
 " noremap <C-c> "+y
 " noremap <C-p> "+p
 " noremap <C-x> "+x
@@ -99,7 +106,6 @@ noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 "" airline
 let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
-let g:airline_theme='solarized'
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -112,11 +118,10 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ }
 
-let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
 let g:airline_exclude_preview = 1
-let g:airline#extensions#syntastic#enabled = 0
+" let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 2
@@ -125,6 +130,8 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#left_sep = "\ue0b0 "
 let g:airline#extensions#tabline#left_alt_sep = "\ue0b1"
 let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#ale#enabled = 0
+
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -135,8 +142,10 @@ nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
 "" NERDTREE
 map <leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.sw[po]$', '^\.git$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
 " Prevents VIM to close the whole window
 nnoremap \d :bp<cr>:bd #<cr>
 
@@ -154,8 +163,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 
 " ACK (fuzzy search)
-nmap <leader>a <Esc>:Ack!
-let g:ackprg = 'ag --vimgrep'
+" nmap <leader>a <Esc>:Ack!
+" let g:ackprg = 'ag --vimgrep'
 
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
@@ -166,7 +175,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set wrap
-set textwidth=79
+set textwidth=120
 set formatoptions=lv
 set colorcolumn=80
 "set list
@@ -231,10 +240,10 @@ set wildmenu
 ""Ignore these files when completing names and in Explorer
 set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,CMakeFiles,*.beam,.hg
 
-if has("gui_running")
-    set cursorline   "highlight current line
+"if has("gui_running")
+set cursorline   "highlight current line
     "set cursorcolumn "highlight current column
-endif
+"endif
 
 if &diff
     "I'm only interested in diff colours
@@ -296,8 +305,12 @@ endif
 " let g:solarized_visibility = 'high'
 " let g:solarized_diffmode = 'high'
 if (has("gui_running"))
-    let g:solarized_term_italics = 1
+    colorscheme onehalfdark
+    let g:airline_theme='onehalfdark'
 else
+    colorscheme solarized8
+    let g:solarized_term_italics = 1
+    let g:airline_theme='solarized'
     " let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
     " let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
     " let &t_Co = 16
@@ -307,7 +320,6 @@ endif
 set background=dark
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
-colorscheme solarized8
 
 "flag problematic whitespace (trailing and spaces before tabs)
 "Note you get the same by doing let c_space_errors=1 but
@@ -378,22 +390,31 @@ let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs = 1
 
 " Syntastic
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_generic = 1
-let g:syntastic_javascript_eslint_exec = '/bin/ls'
-let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
-let g:syntastic_javascript_eslint_args = '-f compact'
-let g:syntastic_vue_checkers = ['eslint']
-let g:syntastic_vue_eslint_generic = 1
-let g:syntastic_vue_eslint_exec = '/bin/ls'
-let g:syntastic_vue_eslint_exe = 'yarn run eslint'
-let g:syntastic_vue_eslint_args = '-f compact'
-let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
-let g:syntastic_python_pylint_post_args = "--max-line-length=120"
-let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
-                                               \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
+" let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_generic = 1
+" let g:syntastic_javascript_eslint_exec = '/bin/ls'
+" let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
+" let g:syntastic_javascript_eslint_args = '-f compact'
+" let g:syntastic_vue_checkers = ['eslint']
+" let g:syntastic_vue_eslint_generic = 1
+" let g:syntastic_vue_eslint_exec = '/bin/ls'
+" let g:syntastic_vue_eslint_exe = 'yarn run eslint'
+" let g:syntastic_vue_eslint_args = '-f compact'
+" let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
+" let g:syntastic_python_pylint_post_args = '--max-line-length=120'
+" let g:syntastic_python_pylint_quiet_messages = { 'type':  'style',
+"                                                \ 'regex': '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
+
+" ALE
+" let g:ale_linters = {}
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
+let g:ale_completion_enabled = 0
+let g:ale_completion_max_suggestions = 0
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -414,8 +435,15 @@ let g:ycm_auto_trigger = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_python_binary_path = 'python'
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_disable_signature_help = 1
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 
 " vim-go
 let g:go_highlight_functions = 1
@@ -469,9 +497,9 @@ let g:gutentags_ctags_tagfile = '.tags'
 
 "" FZF
 " [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-nnoremap <silent> <Leader>t :call fzf#vim#tags(expand('<cword>'))<CR>
+"let g:fzf_buffers_jump = 1
+"nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+"nnoremap <silent> <Leader>t :call fzf#vim#tags(expand('<cword>'))<CR>
 
 "" Vue
 let g:vue_disable_pre_processors=1
@@ -500,3 +528,30 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" CtrlSF
+let g:ctrlsf_position = 'bottom'
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_close =
+\ { "normal" : 0,
+  \ "compact": 1 }
+
+nmap     <leader>af <Plug>CtrlSFPrompt
+vmap     <leader>af <Plug>CtrlSFVwordPath
+nmap     <leader>ag <Plug>CtrlSFCwordPath<CR>
+nnoremap <leader>ao :CtrlSFOpen<CR>
+nnoremap <leader>at :CtrlSFToggle<CR>
+nnoremap <leader>at <Esc>:CtrlSFToggle<CR>
+
+" Multiple Cursor
+let g:multi_cursor_use_default_mapping = 0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-m>'
+let g:multi_cursor_select_all_word_key = '<A-m>'
+let g:multi_cursor_start_key           = 'g<C-m>'
+let g:multi_cursor_select_all_key      = 'g<A-m>'
+let g:multi_cursor_next_key            = '<C-m>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
