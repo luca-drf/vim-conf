@@ -13,7 +13,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
-"Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 "Plug '/usr/local/opt/fzf'
@@ -31,7 +30,6 @@ Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
-" Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
