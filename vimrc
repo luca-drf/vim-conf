@@ -15,8 +15,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
-"Plug '/usr/local/opt/fzf'
-"Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dense-analysis/ale'
@@ -24,7 +22,9 @@ Plug 'dense-analysis/ale'
 " Themes
 " Plug 'jacoborus/tender.vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'sonph/onehalf', { 'rtp': 'vim/' }
+" Plug 'sonph/onehalf', { 'rtp': 'vim/' }
+" Plug 'sainnhe/edge'
+Plug 'sainnhe/sonokai'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -101,7 +101,33 @@ nnoremap "*D "*D
 " vmap <C-p> c<ESC>"+p
 " imap <C-p> <ESC>"+pa
 
-"" airline
+
+" lightline
+" let g:lightline = {
+"       \ 'colorscheme': 'solarized',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'gitbranch': 'FugitiveHead'
+"       \ },
+"       \ 'mode_map': {
+"         \ 'n' : 'N',
+"         \ 'i' : 'I',
+"         \ 'R' : 'R',
+"         \ 'v' : 'V',
+"         \ 'V' : 'VL',
+"         \ "\<C-v>": 'VB',
+"         \ 'c' : 'C',
+"         \ 's' : 'S',
+"         \ 'S' : 'SL',
+"         \ "\<C-s>": 'SB',
+"         \ 't': 'T',
+"         \ },
+"       \ }
+
+" airline
 let g:airline_powerline_fonts = 1
 let g:bufferline_echo = 0
 let g:airline_mode_map = {
@@ -303,12 +329,18 @@ endif
 " let g:solarized_visibility = 'high'
 " let g:solarized_diffmode = 'high'
 if (has("gui_running"))
-    colorscheme onehalfdark
-    let g:airline_theme='onehalfdark'
+    " colorscheme onehalfdark
+    " let g:airline_theme='onehalfdark'
+    let g:sonokai_style = 'atlantis'
+    let g:sonokai_enable_italic = 1
+    colorscheme sonokai
+    let g:airline_theme='sonokai'
+    " let g:lightline.colorscheme = 'sonokai'
 else
     colorscheme solarized8
     let g:solarized_term_italics = 1
     let g:airline_theme='solarized'
+    " let g:lightline.colorscheme = 'solarized'
     " let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
     " let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
     " let &t_Co = 16
@@ -318,6 +350,7 @@ endif
 set background=dark
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
+highlight link pythonDot White
 
 "flag problematic whitespace (trailing and spaces before tabs)
 "Note you get the same by doing let c_space_errors=1 but
@@ -441,7 +474,10 @@ let g:ycm_extra_conf_vim_data = [
   \  'g:ycm_python_interpreter_path',
   \  'g:ycm_python_sys_path'
   \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_global_extra_conf.py'
+let g:ycm_auto_hover = ''
+nmap <leader>h <plug>(YCMHover)
+
 
 " vim-go
 let g:go_highlight_functions = 1
@@ -526,6 +562,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
 
 " CtrlSF
 let g:ctrlsf_position = 'bottom'
