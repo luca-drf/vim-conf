@@ -11,11 +11,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
+" Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'dyng/ctrlsf.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -45,10 +45,10 @@ noremap <C-Down>  :wincmd j<CR>
 noremap <C-Up>    :wincmd k<CR>
 noremap <C-Right> :wincmd l<CR>
 
-noremap <C-d> :vertical resize +5<CR>
-noremap <C-f> :vertical resize -5<CR>
-noremap <C-q> :resize +5<CR>
-noremap <C-w> :resize -5<CR>
+" noremap <C-d> :vertical resize +5<CR>
+" noremap <C-f> :vertical resize -5<CR>
+" noremap <C-q> :resize +5<CR>
+" noremap <C-w> :resize -5<CR>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
@@ -360,7 +360,7 @@ let NERDCompactSexyComs = 1
 " Syntastic
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_post_args="--max-line-length=120"
 let g:syntastic_python_pylint_quiet_messages = { "type":  "style",
                                                \ "regex": '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
@@ -468,3 +468,10 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+
+nmap     <C-F>f <Plug>CtrlSFPrompt
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
