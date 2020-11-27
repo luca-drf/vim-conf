@@ -3,10 +3,11 @@ filetype off " required
 
 call plug#begin('~/.vim/plugged')
 
+
 " Load
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -16,7 +17,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'dyng/ctrlsf.vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'dense-analysis/ale'
 
 " Themes
@@ -50,11 +50,6 @@ noremap <C-Left>  :wincmd h<CR>
 noremap <C-Down>  :wincmd j<CR>
 noremap <C-Up>    :wincmd k<CR>
 noremap <C-Right> :wincmd l<CR>
-
-" noremap <C-d> :vertical resize +5<CR>
-" noremap <C-f> :vertical resize -5<CR>
-" noremap <C-q> :resize +5<CR>
-" noremap <C-w> :resize -5<CR>
 
 " automatically reload vimrc when it's saved
 au BufWritePost .vimrc so ~/.vimrc
@@ -145,7 +140,6 @@ let g:airline_mode_map = {
 let g:airline#extensions#whitespace#enabled = 0
 " let g:airline#extensions#whitespace#checks = [ 'trailing' ]
 let g:airline_exclude_preview = 1
-" let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 2
@@ -411,32 +405,10 @@ set printoptions=paper:A4,syntax:y,wrap:y,header:0
 "   return v:shell_error
 " endfunc
 
-" delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-
 " NERDCommenter
 let NERDSpaceDelims = 1
 let NERDRemoveExtraSpaces = 1
 let NERDCompactSexyComs = 1
-
-" Syntastic
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_generic = 1
-" let g:syntastic_javascript_eslint_exec = '/bin/ls'
-" let g:syntastic_javascript_eslint_exe = 'yarn run eslint'
-" let g:syntastic_javascript_eslint_args = '-f compact'
-" let g:syntastic_vue_checkers = ['eslint']
-" let g:syntastic_vue_eslint_generic = 1
-" let g:syntastic_vue_eslint_exec = '/bin/ls'
-" let g:syntastic_vue_eslint_exe = 'yarn run eslint'
-" let g:syntastic_vue_eslint_args = '-f compact'
-" let g:syntastic_python_checkers = ['pylint', 'pycodestyle']
-" let g:syntastic_python_pylint_post_args = '--max-line-length=120'
-" let g:syntastic_python_pylint_quiet_messages = { 'type':  'style',
-"                                                \ 'regex': '^\[invalid-name\][a-zA-Z\ \-_\"]*' }
 
 " ALE
 " let g:ale_linters = {}
@@ -578,15 +550,10 @@ nnoremap <leader>ao :CtrlSFOpen<CR>
 nnoremap <leader>at :CtrlSFToggle<CR>
 nnoremap <leader>at <Esc>:CtrlSFToggle<CR>
 
-" Multiple Cursor
-let g:multi_cursor_use_default_mapping = 0
+" AutoPairs
+let g:AutoPairsShortcutToggle = '<C-a>p'
+let g:AutoPairsShortcutFastWrap = '<C-w>'
+let g:AutoPairsShortcutJump = '<C-j>'
+let g:AutoPairsShortcutBackInsert = '<C-b>'
+let g:AutoPairsFlyMode = 1
 
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-m>'
-let g:multi_cursor_select_all_word_key = '<A-m>'
-let g:multi_cursor_start_key           = 'g<C-m>'
-let g:multi_cursor_select_all_key      = 'g<A-m>'
-let g:multi_cursor_next_key            = '<C-m>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
