@@ -33,7 +33,7 @@ Plug 'vim-scripts/TaskList.vim', { 'on': 'TaskList' }
 Plug 'vim-latex/vim-latex', { 'for':  'tex' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-python/python-syntax', { 'for': 'python' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
 call plug#end()
 
@@ -55,8 +55,8 @@ noremap <C-Right> :wincmd l<CR>
 au BufWritePost .vimrc so ~/.vimrc
 
 " work with buffers
-noremap <C-TAB>   :bn<CR>
-noremap <C-S-TAB> :bp<CR>
+nnoremap <C-TAB>   :bn<CR>
+nnoremap <C-S-TAB> :bp<CR>
 
 let mapleader = ","
 
@@ -124,6 +124,18 @@ nnoremap "*D "*D
 
 " airline
 let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.colnr = ' C:'
+let g:airline_symbols.linenr = ' L:'
+let g:airline_symbols.readonly = '⊘'
+let g:airline_symbols.crypt = ''
+let g:airline_symbols.dirty = ' *'
+
 let g:bufferline_echo = 0
 let g:airline_mode_map = {
       \ '__' : '-',
@@ -145,11 +157,10 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#left_sep = "\ue0b0 "
-let g:airline#extensions#tabline#left_alt_sep = "\ue0b1"
+" let g:airline#extensions#tabline#left_sep = '\ue0b0 '
+" let g:airline#extensions#tabline#left_alt_sep = '\ue0b1'
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#ale#enabled = 0
-
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -174,11 +185,16 @@ nnoremap \d :bp<cr>:bd #<cr>
 
 " Start if opening a directory
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Close vim if only NERDtree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
 
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " ACK (fuzzy search)
 " nmap <leader>a <Esc>:Ack!
@@ -464,6 +480,11 @@ au Filetype ruby set softtabstop=2
 au Filetype ruby set sw=2
 au Filetype ruby set ts=2
 
+"" PERL
+au Filetype perl set softtabstop=2
+au Filetype perl set sw=2
+au Filetype perl set ts=2
+
 "" VUE
 au Filetype vue set softtabstop=2
 au Filetype vue set sw=2
@@ -555,5 +576,4 @@ let g:AutoPairsShortcutToggle = '<C-a>p'
 let g:AutoPairsShortcutFastWrap = '<C-w>'
 let g:AutoPairsShortcutJump = '<C-j>'
 let g:AutoPairsShortcutBackInsert = '<C-b>'
-let g:AutoPairsFlyMode = 1
 
