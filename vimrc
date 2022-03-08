@@ -169,6 +169,14 @@ endfunction
 
 nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
+" Pretty-Print JSON
+function! PrettyPrintJSON()
+    %!python -m json.tool
+endfunction
+
+nnoremap <silent> <Leader>pj :call PrettyPrintJSON()<CR>
+
+
 "" NERDTREE
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.sw[po]$', '^\.git$']
@@ -209,7 +217,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set wrap
-set textwidth=120
+" set textwidth=120
 set formatoptions=lv
 set colorcolumn=80
 "set list
@@ -302,12 +310,12 @@ let g:tex_indent_items = 1
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'pdf,dvi'
 
-let g:Tex_CompileRule_dvi = '~/texlive/2018/bin/x86_64-darwin/latex --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps = ' ~/texlive/2018/bin/x86_64-darwin/dvips -Pwww -o $*.ps $*.dvi'
-let g:Tex_CompileRule_pdf = '~/texlive/2018/bin/x86_64-darwin/pdflatex -synctex=1 --interaction=nonstopmode $*'
+let g:Tex_CompileRule_dvi = '/usr/local/texlive/2021/bin/universal-darwin/latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = ' /usr/local/texlive/2021/bin/universal-darwin/dvips -Pwww -o $*.ps $*.dvi'
+let g:Tex_CompileRule_pdf = '/usr/local/texlive/2021/bin/universal-darwin/pdflatex -synctex=1 --interaction=nonstopmode $*'
 
 let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_dvipdf = '~/texlive/2018/bin/x86_64-darwin/dvipdfm $*.dvi'
+let g:Tex_CompileRule_dvipdf = '/usr/local/texlive/2021/bin/universal-darwin/dvipdfm $*.dvi'
 
 let g:Tex_FormatDependency_pdf  = 'pdf'
 let g:Tex_FormatDependency_ps  = 'dvi,ps'
@@ -398,7 +406,7 @@ if has("gui_running")
     set guifont=Hack:h12
     " On Ubuntu
     " set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-    set columns=110
+    set columns=125
     set lines=50
     set antialias
     set guioptions-=T
@@ -465,7 +473,7 @@ let g:ycm_extra_conf_vim_data = [
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_global_extra_conf.py'
 let g:ycm_auto_hover = ''
 nmap <leader>h <plug>(YCMHover)
-
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " vim-go
 let g:go_highlight_functions = 1
