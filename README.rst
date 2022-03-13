@@ -5,7 +5,7 @@ First clone the proper branch
 
 ::
 
-    git clone https://github.com/radome/vim-conf.git ~/.vim && \
+    git clone https://github.com/luca-drf/vim-conf.git ~/.vim && \
     cd ~/.vim && \
     git checkout -t origin/MacOS && \
     ln -s ~/.vim/vimrc ~/.vimrc
