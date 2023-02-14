@@ -1,8 +1,10 @@
 import re
+import os
 
+home = os.environ["HOME"]
 
-interpreter_path_re = re.compile(r'^/Users/ldrf/\.pyenv/versions/\d+\.\d+\.\d+/envs/(?P<env>[\w-]+)/bin/python$')
-site_pkg_path_re = re.compile(r'^(/Users/ldrf/\.pyenv/versions/)(\d+\.\d+\.\d+)(/.*/site-packages)$')
+interpreter_path_re = re.compile(r'^{}/\.pyenv/versions/\d+\.\d+\.\d+/envs/(?P<env>[\w-]+)/bin/python$'.format(home))
+site_pkg_path_re = re.compile(r'^({}/\.pyenv/versions/)(\d+\.\d+\.\d+)(/.*/site-packages)$'.format(home))
 
 
 def Settings(**kwargs):

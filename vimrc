@@ -14,7 +14,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'eiginn/netrw'
 Plug 'dyng/ctrlsf.vim'
 Plug 'dense-analysis/ale'
@@ -171,7 +171,7 @@ nnoremap <silent> <Leader>ds :call TrimWhiteSpace()<CR>
 
 " Pretty-Print JSON
 function! PrettyPrintJSON()
-    %!python -m json.tool
+    %!python3 -m json.tool
 endfunction
 
 nnoremap <silent> <Leader>pj :call PrettyPrintJSON()<CR>
@@ -457,28 +457,28 @@ let g:netrw_silent         = 1
 let g:netrw_special_syntax = 1
 
 " YCM
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_auto_trigger = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_disable_signature_help = 1
-let g:ycm_python_interpreter_path = ''
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_global_extra_conf.py'
-let g:ycm_auto_hover = ''
-nmap <leader>h <plug>(YCMHover)
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+"let g:ycm_min_num_of_chars_for_completion = 2
+"let g:ycm_auto_trigger = 1
+"let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_disable_signature_help = 1
+"let g:ycm_python_interpreter_path = ''
+"let g:ycm_python_sys_path = []
+"let g:ycm_extra_conf_vim_data = [
+"  \  'g:ycm_python_interpreter_path',
+"  \  'g:ycm_python_sys_path'
+"  \]
+"let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_global_extra_conf.py'
+"let g:ycm_auto_hover = ''
+"nmap <leader>h <plug>(YCMHover)
+"nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 " vim-go
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_build_constraints = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_methods = 1
+"let g:go_highlight_build_constraints = 1
 
 "" PYTHON
 au FileType python set nosmartindent autoindent
